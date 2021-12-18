@@ -1,4 +1,4 @@
-import { DirectiveBindingType, LazyOpts } from './types'
+import { DirectiveBindingType, LazyOpts, DirectiveBindingElemType } from './types'
 import { ImageManager, IMAGE_STATUS } from './image-manager'
 
 // 可以默认一张图片
@@ -20,15 +20,15 @@ class Lazy {
     this.init()
   }
 
-  add(el: HTMLImageElement, binding: DirectiveBindingType) {
+  add(el: DirectiveBindingElemType, binding: DirectiveBindingType) {
     let src, error, loading
     const isBackGround = (binding.arg && binding.arg.toLocaleUpperCase() === 'BACKGROUNDIMAGE') as boolean
     if (typeof binding.value === 'object') {
-      src = binding.value.src
+      src = binding.value.src || ''
       error = binding.value.error
       loading = binding.value.loading
     } else {
-      src = binding.value
+      src = binding.value || ''
     }
     const manager = new ImageManager({
       el,
@@ -79,7 +79,7 @@ class Lazy {
           }
         }
       })
-    }, { rootMargin: '0px', threshold: 0.7 })
+    }, { rootMargin: '0px', threshold: 0.2})
   }
 
   initScrollListener() {

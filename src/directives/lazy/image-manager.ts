@@ -1,4 +1,4 @@
-import { ImageManagerOpts } from './types'
+import { ImageManagerOpts, DirectiveBindingElemType } from './types'
 
 export enum IMAGE_STATUS {
   LOADING,
@@ -10,7 +10,7 @@ let uid = 1
 
 class ImageManager {
   src: string
-  el: HTMLImageElement
+  el: DirectiveBindingElemType
   loading: string
   error: string
   status: IMAGE_STATUS

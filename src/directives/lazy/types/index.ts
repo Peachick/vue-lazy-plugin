@@ -9,8 +9,10 @@ export interface DirectiveBindingType extends DirectiveBinding {
   value: { src: string, loading?: string, error?: string } | string
 }
 
+export type DirectiveBindingElemType = HTMLImageElement | HTMLElement
+
 export type ImageManagerOpts = {
-  el: HTMLImageElement
+  el: DirectiveBindingElemType
   src: string
   cache: Set<string>
   loading: string
